@@ -1,5 +1,5 @@
-const priorities = ['medium', 'high', 'medium', 'low']
-const prioritiesColor = ['#b7a47b', '#e84545', '#b7a47b', 'gray']
+const priorities = [     'medium',  'high',     'medium', 'low']
+const prioritiesColor = ['#e2b043', '#e84545', '#e2b043', '#bbbbbb']
 
 const envs = [      '20test', '20test',  '20qa',    'staging', 'insubuytest.com']
 const envsColors = ['#2c34bc', '#2c34bc', '#a84bac', 'gray']
@@ -36,7 +36,7 @@ const defaultCurrentTicket =  {
    }
 
 const TasksList = {
-   list: localStorage.getItem('list') ? JSON.parse(localStorage.getItem('list')) : [],
+   list: getInitialList(),
    currentTicket: {
        ...defaultCurrentTicket,
    },
@@ -44,6 +44,7 @@ const TasksList = {
     priority: 2, // medium by default
     description: '',
    },
+   
    addItem(value, description) {
     this.currentTicket.id = this.list.length++;
     this.currentTicket.ticketNum = value;
@@ -151,7 +152,36 @@ const TasksList = {
     view.tasksListContainerDiv.innerHTML = '';
     view.tasksListContainerDiv.append(ul);
     
+    localStorage.setItem('timestamp', JSON.stringify(new Date));
     localStorage.setItem('list', JSON.stringify(TasksList.list));
+   },
+   displayText() {
+    let a = document.createElement("a");
+    let textDisplayElement = document.getElementById("textDisplay");
+
+    let text = generateExportTxt();
+    textDisplayElement.innerText = text;
+    textDisplayElement.hidden = false;
+    // envokeExport(text, 'todays-work.txt');
+
+    function envokeExport(text, fileName) {
+        blob = new Blob([text], {type: "octet/stream"}),
+        url = window.URL.createObjectURL(blob);
+        a.href = url;
+        a.download = fileName;
+        a.click();
+        window.URL.revokeObjectURL(url);
+    };
+
+    function generateExportTxt() {
+        let text = '';
+
+        TasksList.list.forEach((task, i) => {
+            text += '[' + task.ticketNum + '] - ' + task.description + '\r\n'; 
+        });
+
+        return text;
+    }
    }
 }
 
@@ -222,4 +252,21 @@ function globalClickController(e) {
         e.stopPropagation();
         TasksList.markForDeployment(e.target.dataset.id);
     }
+    
+    if(e.target.id === 'exportBtn') {
+        e.stopPropagation();
+        TasksList.displayText()
+    }
 }
+
+
+function getInitialList() {
+    let timestamp = JSON.parse(localStorage.getItem('timestamp'));
+    let twelveHours = 60 * 60 * 12 * 1000;
+
+        // if((new Date).getTime() - new Date(timestamp).getTime() < twelveHours) {
+            return localStorage.getItem('list') ? JSON.parse(localStorage.getItem('list')) : []
+    //     } else {
+    //         return [];
+    //     }
+    }
