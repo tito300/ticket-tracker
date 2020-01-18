@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="/circle-xxl.png">
+    <link rel="icon" href="./circle-xxl.png">
     <title>Ticket Tracker</title>
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -13,7 +13,7 @@
             color: rgba(0, 0, 0, 0.438);
         }
         body {
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
         .main-label {
             font-size: 16px;
@@ -46,7 +46,7 @@
             box-shadow: none;
         }
         .list-group-item {
-            padding-top: 0.5rem;
+            padding-top: 0.6rem;
             padding-bottom: 0.6rem;
         }
         .badge-primary {
@@ -71,6 +71,19 @@
             left: 4px;
             fill: rgb(216, 44, 44);
         }
+        .paper-plane--completed {
+            position: absolute;
+            width: 27px;
+            height: 27px;
+            top: -3px;
+            left: 4px;
+            fill: rgb(47, 119, 37);
+        }
+        .paper-plane:hover {
+            fill: rgb(41, 121, 41);
+            transition: fill 0.1s linear;
+            transform: scale(1.08);
+        }
         .export-btn {
             background-color: rgb(91, 141, 91);
             color: white;
@@ -82,14 +95,15 @@
             background-color: rgb(38, 126, 38);
         }
         .text-display {
-            background-color: rgb(241, 241, 241);
+            background-color: #f1f1f169;
+            color: rgba(0, 0, 0, 0.582);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="row pb-4"></div>
-        <div class="row pb-3">
+        <div class="row pb-5"></div>
+        <div class="row pb-4">
             <div class="col d-flex justify-content-center">
                 <div class="d-flex " id="inputswrapper">
                     <input type="text" class="form-control rounded-0 w-25" id="ticketInput" placeholder="ticket.." aria-label="Default" aria-describedby="inputGroup-sizing-default">
@@ -113,7 +127,7 @@
                             <span class="dropdown-item" href="#" data-value="1">20test</span>
                             <span class="dropdown-item" href="#" data-value="2">20qa</span>
                             <span class="dropdown-item" href="#" data-value="3">staging</span>
-                            <span class="dropdown-item" href="#" data-value="3">insubuytest.com</span>
+                            <span class="dropdown-item" href="#" data-value="4">None</span>
                         </div>
                         </div>
                     </div>
