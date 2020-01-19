@@ -18,6 +18,11 @@
         .main-label {
             font-size: 16px;
         }
+        #ticketInput {
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+            width: 35%;
+        }
         .dropdown-toggle {
             background-color: blanchedalmond;
             color: rgba(0, 0, 0, 0.507);
@@ -28,6 +33,7 @@
         .dropdown-toggle:hover {
             background-color: rgb(255, 226, 183);
             color: rgba(0, 0, 0, 0.707);
+            border-color: rgb(255, 226, 183);
         }
         .dropdown-toggle::after {
             content: none;
@@ -73,16 +79,39 @@
         }
         .paper-plane--completed {
             position: absolute;
-            width: 27px;
-            height: 27px;
-            top: -3px;
-            left: 4px;
-            fill: rgb(47, 119, 37);
+            width: 23px;
+            height: 23px;
+            top: 0px;
+            left: 5px;
+            fill: rgb(36, 100, 27)rgb(36, 100, 27);
+        }
+        .paper-plane--deployed {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            top: -2px;
+            left: 3px;
+            fill: rgb(36, 100, 27);
+        }
+        .paper-plane--completed path {
+            fill: #ffffff;
+        }
+        .paper-plane--deployed path {
+            fill: #53882f;
         }
         .paper-plane:hover {
             fill: rgb(41, 121, 41);
             transition: fill 0.1s linear;
             transform: scale(1.08);
+        }
+        .paper-plane--completed:hover {
+            transition: all 0.1s linear;
+            transform: scale(1.08);
+        }
+        .paper-plane--deployed:hover path {
+            fill: rgb(201, 56, 56);
+            transition: fill 0.1s linear;
+            transform: scale(1.03);
         }
         .export-btn {
             background-color: rgb(91, 141, 91);
@@ -106,7 +135,7 @@
         <div class="row pb-4">
             <div class="col d-flex justify-content-center">
                 <div class="d-flex " id="inputswrapper">
-                    <input type="text" class="form-control rounded-0 w-25" id="ticketInput" placeholder="ticket.." aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <input type="text" class="form-control rounded-left" id="ticketInput" placeholder="ticket.." aria-label="Default" aria-describedby="inputGroup-sizing-default">
                     <input type="text" class="form-control rounded-0 border-left-0" placeholder="description.." id="descriptionInput" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle rounded-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
