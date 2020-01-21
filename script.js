@@ -72,7 +72,7 @@ const TasksList = {
     this.renderTasksList();
    },
    removeItem(id) {
-        TasksList.list = mutableList.filter(task => task.id !== parseInt(id));
+        TasksList.list = TasksList.list.filter(task => task.id !== parseInt(id));
 
         TasksList.renderTasksList();
    },
@@ -193,7 +193,7 @@ const TasksList = {
         } 
     })
     const queueTitle = createElement('p', 'lead mb-1', 'Queue', {styles: [['fontWeight', '400'], ['color', 'rgba(0,0,0,0.6)']]});
-    const completedTitle = createElement('p', 'lead mb-1', 'Completed',  {styles: [['fontWeight', '400'], ['color', 'rgba(0,0,0,0.6)']]});
+    const completedTitle = createElement('p', 'lead mb-1', 'Ready for Deployment',  {styles: [['fontWeight', '400'], ['color', 'rgba(0,0,0,0.6)']]});
     const deployedTitle = createElement('p', 'lead mb-1', 'Deployed',  {styles: [['fontWeight', '400'], ['color', 'rgba(0,0,0,0.6)']]});
     const ulPlaceholder = createElement('ul', 'list-group mb-4')
     ulPlaceholder.appendChild(createElement('li', 'list-group-item text-muted', 'No tickets available..'))
@@ -225,9 +225,9 @@ const TasksList = {
         view.tasksListContainerDiv.appendChild(ulPlaceholder.cloneNode(true));
     }
 
-
+    /* PAGE META */
     if(completedTickets.length) {
-        document.getElementsByTagName('title')[0].textContent = `(${completedTickets.length}) Tickets`
+        document.getElementsByTagName('title')[0].textContent = `(${completedTickets.length}) Ready - (${otherTickets.length + currentTickets.length}) in Queue`
     } else {
         document.getElementsByTagName('title')[0].textContent = `Tracker`
     }
